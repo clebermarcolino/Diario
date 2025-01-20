@@ -67,7 +67,14 @@
 
     {% for texto in textos %}
         <div class="overflow-hidden rounded-lg bg-gray-800 ring-1 ring-white/15 {% if forloop.counter == 1 %}lg:rounded-tl-[2rem]{% elif forloop.counter == 3%}lg:rounded-tr-[2rem] {% endif %}">
-        <img class="h-40 w-full" src="{% static 'waves.png' %}" alt="">
+            {% with texto.pessoas.all|first as pessoa %}
+            {% if pessoa.foto %}
+            <img class="h-32 w-32 mx-auto rounded-full object-cover" src="{{ pessoa.foto.url }}" alt="{{ pessoa.nome }}">
+            {% else %}
+            <img class="h-32 w-32 mx-auto rounded-full object-cover" src="{% static 'default.jpg' %}" alt="Imagem padrão">
+            {% endif %}
+        {% endwith %}
+        
         <div class="p-10">
         <div>
             {% for i in texto.get_tags %}
