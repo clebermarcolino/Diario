@@ -5,7 +5,7 @@ from django.contrib import messages
 
 
 def home(request):
-    textos = Diario.objects.all().order_by('create_at')[:3] #  Busca no banco de dados os 3 diários mais recentes, ordenados por data de criação.
+    textos = Diario.objects.all().order_by('-create_at')[:3] #  Busca no banco de dados os 3 diários mais recentes, ordenados por data de criação.
     pessoas = Pessoa.objects.all() # Busca todas as pessoas registradas no banco.
     nomes = [pessoa.nome for pessoa in pessoas] # Cria uma lista com os nomes de todas as pessoas.
     quantidades = []
@@ -67,6 +67,13 @@ def cadastrar_pessoa(request):
         if len(nome.strip()) == 0:
             messages.error(request, '⚠️ O nome da pessoa não pode estar vazio.')
             return redirect('cadastrar_pessoa')
+        
+        if foto:
+            extensoes_validas = ['jpg', 'jpeg', 'png']
+            ext = foto.name.split('.')[-1].lower()
+            if ext not in extensoes_validas:
+                messages.error(request, '⚠️ O arquivo enviado não é uma imagem válida (use JPG, JPEG, PNG).')
+                return redirect('cadastrar_pessoa')
 
         pessoa = Pessoa(
             nome=nome,
@@ -106,7 +113,8 @@ def excluir_anotacao_individual(request, id): # metódo para excluir uma anotaç
     anotacao = get_object_or_404(Diario, id=id)
     anotacao.delete()
     messages.success(request, "✅ Anotação excluída com sucesso!")
-    return redirect('escrever')  
+    return redirect("escrever")
+  
 
 
 
