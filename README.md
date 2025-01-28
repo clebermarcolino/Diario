@@ -72,14 +72,6 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 6.  **Acesse o aplicativo no navegador:**
     Abra seu navegador e vá para `http://127.0.0.1:8000/diario/`.
 
-## Próximos Passos
-
-- **Melhorias na Interface:** Implementar um design mais sofisticado e intuitivo.
-- **Autenticação de Usuários:** Adicionar um sistema de autenticação para garantir a privacidade dos dados.
-- **Testes:** Implementar testes unitários e de integração para garantir a qualidade do software.
-- **Melhorias nos Gráficos:** Explore mais opções de gráficos e dados para uma melhor análise.
-- **Deploy:** Preparar o aplicativo para deploy em um ambiente de produção.
-
 ## Contribuições
 
 Contribuições são bem-vindas! Se você encontrar bugs ou tiver sugestões de melhorias, por favor, abra uma issue ou envie um pull request.
