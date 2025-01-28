@@ -1,4 +1,3 @@
-```
 # Projeto Diário Pessoal Fullstack
 
 Este é um projeto fullstack para um diário pessoal, que permite aos usuários registrar seus pensamentos e momentos diários, associá-los a pessoas e tags, além de visualizar suas entradas de forma organizada.
@@ -84,4 +83,3 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 ## Contribuições
 
 Contribuições são bem-vindas! Se você encontrar bugs ou tiver sugestões de melhorias, por favor, abra uma issue ou envie um pull request.
-```
