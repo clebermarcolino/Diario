@@ -35,6 +35,7 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 ### Backend
 - **Python:** Linguagem de programação principal.
 - **Django:** Framework web para o desenvolvimento do backend.
+- **Pyllow:** Biblioteca de processamento de imagens para a linguagem de programação Python.
 - **Django Templates:** Para renderização dinâmica de páginas HTML.
 - **SQLite:** Banco de dados para armazenar informações.
 
@@ -45,7 +46,7 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
     git clone <URL_DO_REPOSITORIO>
     cd <DIRETORIO_DO_PROJETO>
     ```
-2.  **Crie um ambiente virtual (opcional, mas recomendado):**
+2.  **Crie um ambiente virtual (opcional, mas recomendado. obs: ao clonar o repositório exclua a pasta 'venv' e digite no terminal do projeto o comando exibido abaixo):**
     ```bash
     python -m venv venv
     ```
@@ -57,12 +58,14 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
         ```bash
         venv\Scripts\activate
         ```
-3.  **Instale o django:**
+3.  **Instale o django e pillow:**
     ```bash
     pip install django
+    pip install pillow
     ```
-4.  **Aplique as migrações:**
+4.  **Crie as classes do arquivo Models.py e Aplique as migrações:**
     ```bash
+    python manage.py makemigrations diario
     python manage.py migrate
     ```
 5.  **Inicie o servidor de desenvolvimento:**
