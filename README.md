@@ -72,9 +72,5 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
     ```bash
     python manage.py runserver
     ```
-6.  **Acesse o aplicativo no navegador:**
+6.  **Acesse o siste no seu navegador:**
     Abra seu navegador e vá para `http://127.0.0.1:8000/diario/`.
-
-## Contribuições
-
-Contribuições são bem-vindas! Se você encontrar bugs ou tiver sugestões de melhorias, por favor, abra uma issue ou envie um pull request.
