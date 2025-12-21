@@ -13,45 +13,59 @@
 </div>
 
 <script>
-    // Espera 4 segundos (4000ms) e depois esconde as mensagens
     setTimeout(() => {
         const messages = document.querySelectorAll('.message');
         messages.forEach((msg) => {
             msg.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
-            setTimeout(() => msg.remove(), 1000); // Remove após a transição
+            setTimeout(() => msg.remove(), 1000);
         });
     }, 4000);
 </script>
 {% endif %}
 
 <div class="relative isolate pointer-events-none">
- <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
- <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
- </div>
-</div>
-<div class="bg-gray-900 h-screen flex items-center justify-center">
- <form class="bg-slate-800/45 shadow-md rounded-lg p-8 w-96" enctype='multipart/form-data' action="{% url 'cadastrar_pessoa' %}" method="POST">{% csrf_token %}
- <h2 class="text-2xl font-bold mb-6 text-gray-300 text-center">Pessoa</h2>
- <input type="text" name="nome" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Nome da pessoa aqui...">
- <br>
- <input type="file" name="foto" id="titulo" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
- <input type="submit" class="mt-6 cursor-pointer w-full text-center rounded-md bg-indigo-600 px-3.5 py-2.5 text-xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" value="Criar">
- </form>
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
 </div>
 
-</div>
+<div class="bg-gray-900 min-h-screen flex items-start justify-center py-12 px-4">
+    <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10">
 
-<div class="mt-10 bg-gray-900 p-6">
-    <h2 class="text-2xl font-bold mb-4 text-white text-center">Pessoas Cadastradas</h2>
-    <div class="max-w-lg mx-auto bg-slate-800/45 p-6 rounded-md shadow-md">
-        <ul class="space-y-3">
-            {% for pessoa in pessoas %}
-                <li class="flex justify-between items-center bg-gray-700 text-white p-3 rounded-md">
-                    <span>{{ pessoa.nome }}</span>
-                    <a href="{% url 'excluir_pessoa' pessoa.id %}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md">Excluir</a>
-                </li>
-            {% endfor %}
-        </ul>
+        <div class="bg-slate-800/45 shadow-md rounded-lg p-8">
+            <h2 class="text-2xl font-bold mb-6 text-gray-300 text-center">Cadastrar Pessoa</h2>
+            <form enctype="multipart/form-data" action="{% url 'cadastrar_pessoa' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="nome" placeholder="Digite o nome da pessoa"
+                       class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-4">
+
+                <input type="file" name="foto" id="foto"
+                       class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-6">
+
+                <input type="submit" value="Criar"
+                       class="w-full cursor-pointer text-center rounded-xl bg-indigo-600 px-3.5 py-2.5 text-xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            </form>
+        </div>
+
+        <div class="bg-slate-800/45 shadow-md rounded-lg p-8">
+            <h2 class="text-2xl font-bold mb-6 text-gray-300 text-center">Pessoas Cadastradas</h2>
+            {% if pessoas %}
+                <ul class="space-y-3">
+                    {% for pessoa in pessoas %}
+                        <li class="flex justify-between items-center bg-gray-700 text-white p-3 rounded-md">
+                            <span>{{ pessoa.nome }}</span>
+                            <a href="{% url 'excluir_pessoa' pessoa.id %}"
+                               class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition">
+                                Excluir
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-400 text-center">Não há pessoas cadastradas. </p>
+            {% endif %}
+        </div>
+
     </div>
 </div>
 

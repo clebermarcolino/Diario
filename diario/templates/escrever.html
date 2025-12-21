@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
+
+<!-- Mudar apenas o design da barra de navegação da tela 'escrever' -->
+{% block header_class %}
+    bg-gradient-to-b from-blue-900/60 via-blue-900/60 to-transparent backdrop-blue-sm
+{% endblock %}
+
 {% block 'body' %}
 
-<body>
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
@@ -12,7 +17,6 @@
         {% endfor %}
     </div>
 {% endif %}
-</body>
 
 <style>
     .messages {
@@ -34,11 +38,11 @@
 }
 
 .alert-success {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
 }
 
 .alert-danger {
-    background-color: #F44336; /* Vermelho */
+    background-color: #F44336; 
 }
 </style>
 
