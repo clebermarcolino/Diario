@@ -51,8 +51,7 @@ def escrever(request):
             diario.pessoas.add(pessoa)
 
         diario.save()
-
-        #TODO: ADICIONAR MENSAGENS DE SUCESSO
+ 
         messages.success(request, '✅ Sua anotação foi salva com sucesso!')
         return redirect('escrever')
     
