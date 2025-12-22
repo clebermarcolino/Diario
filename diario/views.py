@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Pessoa, Diario
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.contrib import messages  
 
 
@@ -93,13 +93,29 @@ def listar_pessoas(request):
     pessoas = Pessoa.objects.all()
     return render(request, 'pessoa.html', {'pessoas': pessoas})
 
-    
 def dia(request):
-    data = request.GET.get('data')
-    data_formatada = datetime.strptime(data, '%Y-%m-%d')
-    diarios = Diario.objects.filter(create_at__gte=data_formatada).filter(create_at__lte=data_formatada + timedelta(days=1)) # Busca no banco todos os diários cuja data de criação esteja entre o dia informado e o dia seguinte (para pegar os diários daquele dia específico).
-
-    return render(request, 'dia.html', {'diarios': diarios, 'total': diarios.count(), 'data': data})
+    data_str = request.GET.get('data')
+    
+    if data_str:
+        try:
+            data_formatada = datetime.strptime(data_str, '%Y-%m-%d')
+        except ValueError:
+            data_formatada = datetime.combine(date.today(), datetime.min.time())
+    else:
+        data_formatada = datetime.combine(date.today(), datetime.min.time())
+    
+    inicio_do_dia = data_formatada
+    fim_do_dia = data_formatada + timedelta(days=1)
+    
+    diarios = Diario.objects.filter(create_at__gte=inicio_do_dia, create_at__lt=fim_do_dia).order_by('create_at')
+    
+    data_para_template = data_formatada.strftime('%Y-%m-%d')
+    
+    return render(request, 'dia.html', {
+        'diarios': diarios,
+        'total': diarios.count(),
+        'data': data_para_template,
+    })
 
 def excluir_anotacao_dia(request): # metódo para excluir todas as anotações de um dia selecionado
     dia = datetime.strptime(request.GET.get('data'), '%Y-%m-%d')
@@ -110,14 +126,11 @@ def excluir_anotacao_dia(request): # metódo para excluir todas as anotações d
 
 def excluir_anotacao_individual(request, id): # metódo para excluir uma anotação de um dia selecionado
     anotacao = get_object_or_404(Diario, id=id)
+    next_url = request.GET.get('next') or reverse('escrever')
+
+    if not next_url.startswith('/') or next_url.startswith('//'):
+        next_url = reverse('escrever')
+
     anotacao.delete()
     messages.success(request, "✅ Anotação excluída com sucesso!")
-    return redirect("escrever")
-  
-
-
-
-    
-    
-
-        
+    return redirect(next_url)

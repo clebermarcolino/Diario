@@ -42,26 +42,47 @@
 
  </div>
  </div>
- <time datetime="{{ diario.create_at|date:'c' }}" class="flex-none py-0.5 text-xs/5 text-gray-500">{{ diario.create_at|date:"d/m/Y" }}</time>
- <a href="{% url 'excluir_anotacao_individual' diario.id %}" class="text-red-600 hover:text-red-400 ml-2">❌</a>
+ <time datetime="{{ diario.create_at|date:'c' }}" class="flex-none py-0.5 text-xs/5 text-gray-600">{{ diario.create_at|date:"d/m/Y" }}</time>
+ <a href="{% url 'excluir_anotacao_individual' diario.id %}?next={{ request.path }}" class="text-red-600 hover:text-red-400 ml-2"onclick="return confirm('Tem certeza que deseja excluir esta anotação?')">❌</a>
  </li>
  {% endfor %}
+
+{% if messages %}
+  <div class="fixed top-4 right-4 z-50">
+          {% for message in messages %}
+              <div class="message mb-2 px-4 py-2 rounded-md text-white 
+                    {% if message.tags == 'success' %}bg-green-500{% elif message.tags == 'error' %}bg-red-500{% else %}bg-gray-500{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+    </div>
+{% endif %}
+
+<script>
+    setTimeout(() => {
+        const messages = document.querySelectorAll('.message');
+        messages.forEach((msg) => {
+            msg.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
+            setTimeout(() => msg.remove(), 1000);
+        });
+    }, 4000);
+</script>
 
  </ul>
  </div>
 
  <div>
   {% if total == 1 %}
-  <h1 class="text-2xl font-semibold tracking-tight text-slate-600">
-      Parabéns, você teve 1 recordação anotada nesse dia.
+  <h1 class="font-nunito text-2xl font-semibold tracking-tight text-slate-500">
+      Você teve 1 recordação anotada nesse dia.
   </h1>
 {% elif total > 1 %}
-  <h1 class="text-2xl font-semibold tracking-tight text-slate-600">
+  <h1 class="font-poppins text-2xl font-semibold tracking-tight text-slate-500">
       Parabéns, você teve {{ total }} recordações anotadas nesse dia.
   </h1>
-{% else %}
-  <h1 class="text-balance text-2xl font-semibold tracking-tight text-slate-600">
-      Que pena, nesse dia não foi feita nenhuma anotação. 😞
+{% else %} 
+  <h1 class="font-nunito text-2xl font-semibold tracking-tight text-slate-500">
+      Que pena, nesse dia não foi feita nenhuma anotação. &#128533;
   </h1>
 {% endif %}
 
@@ -79,7 +100,6 @@
  </div>
  </div>
  </div>
-
 </div>
 
 {% endblock %}
