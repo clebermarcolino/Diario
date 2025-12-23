@@ -46,7 +46,7 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
     git clone <URL_DO_REPOSITORIO>
     cd <DIRETORIO_DO_PROJETO>
     ```
-2.  **Crie um ambiente virtual (opcional, mas recomendado. obs: ao clonar o repositório exclua a pasta 'venv' e digite no terminal do projeto o comando exibido abaixo):**
+2.  **Crie um ambiente virtual:**
     ```bash
     python -m venv venv
     ```
