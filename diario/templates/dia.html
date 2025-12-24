@@ -45,7 +45,10 @@
  </div>
  </div>
  <time datetime="{{ diario.create_at|date:'c' }}" class="flex-none py-0.5 text-xs/5 text-gray-600">{{ diario.create_at|date:"d/m/Y" }}</time>
- <a href="{% url 'excluir_anotacao_individual' diario.id %}?next={{ request.path }}" class="relative ml-2 text-red-600 hover:text-red-400 group"onclick="return confirm('Tem certeza que deseja excluir esta anotação?')">❌
+ <a href="{% url 'excluir_anotacao_individual' diario.id %}?next={{ request.get_full_path }}" 
+   class="..." onclick="return confirm('Tem certeza que deseja excluir esta anotação?')">
+   &#x1F5D1; Excluir
+</a>
   <span class="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2
                 whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-xs
                 text-white opacity-0 transition-opacity duration-200
