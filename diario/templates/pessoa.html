@@ -2,6 +2,9 @@
 {% load static %}
 {% block 'body' %}
 
+{% load static %}
+<script src="{% static 'js/common.js' %}"></script>
+
 {% if messages %}
 <div class="fixed top-4 right-4 z-50">
     {% for message in messages %}
@@ -11,16 +14,6 @@
         </div>
     {% endfor %}
 </div>
-
-<script>
-    setTimeout(() => {
-        const messages = document.querySelectorAll('.message');
-        messages.forEach((msg) => {
-            msg.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
-            setTimeout(() => msg.remove(), 1000);
-        });
-    }, 4000);
-</script>
 {% endif %}
 
 <div class="relative isolate pointer-events-none">

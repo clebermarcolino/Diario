@@ -8,6 +8,9 @@
 
 {% block 'body' %}
 
+{% load static %}
+<script src="{% static 'js/common.js' %}"></script>
+
 {% if messages %}
   <div class="fixed top-4 right-4 z-50">
           {% for message in messages %}
@@ -18,17 +21,6 @@
             {% endfor %}
     </div>
 {% endif %}
-
-<script>
-    setTimeout(() => {
-        const messages = document.querySelectorAll('.message');
-        messages.forEach((msg) => {
-            msg.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
-            setTimeout(() => msg.remove(), 1000);
-        });
-    }, 4000);
-</script>
-
 <div class="relative isolate overflow-hidden bg-gray-900 min-h-screen">
  <svg class="absolute inset-0 -z-10 size-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
  <defs>
