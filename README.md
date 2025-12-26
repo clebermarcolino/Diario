@@ -58,10 +58,11 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
         ```bash
         venv\Scripts\activate
         ```
-3.  **Instale o django e pillow:**
+3.  **Instale o django, pillow e emoji:**
     ```bash
     pip install django
     pip install pillow
+    pip install emoji
     ```
 4.  **Crie as classes do arquivo Models.py e Aplique as migrações:**
     ```bash
