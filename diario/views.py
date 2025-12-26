@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Pessoa, Diario
 from datetime import datetime, timedelta, date
-from django.contrib import messages  
+from django.contrib import messages
+from emoji import emojize
 
 
 def home(request):
@@ -27,15 +28,15 @@ def escrever(request):
         
             
         if len(titulo.strip()) == 0 or len(texto.strip()) == 0:
-            messages.error(request, '⚠️ Título e texto não podem ser vazios!')
+            messages.error(request,emojize(':warning: Título e texto não podem ser vazios!'))
             return redirect('escrever')
 
         if not pessoas:  
-            messages.error(request, '⚠️ Você deve selecionar uma pessoa!')
+            messages.error(request,emojize(':warning: Você deve selecionar uma pessoa!'))
             return redirect('escrever')
         
         if not tags:  
-            messages.error(request, '⚠️ Uma tag deve ser selecionada!')
+            messages.error(request,emojize(':warning: Uma tag deve ser selecionada!'))
             return redirect('escrever')
         
         diario = Diario(
@@ -52,7 +53,7 @@ def escrever(request):
 
         diario.save()
  
-        messages.success(request, '✅ Sua anotação foi salva com sucesso!')
+        messages.success(request,emojize(':check_mark_button: Sua anotação foi salva com sucesso!'))
         return redirect('escrever')
     
 def cadastrar_pessoa(request):
@@ -64,14 +65,14 @@ def cadastrar_pessoa(request):
         foto = request.FILES.get('foto')
 
         if len(nome.strip()) == 0:
-            messages.error(request, '⚠️ O nome da pessoa não pode estar vazio.')
+            messages.error(request,emojize(':warning: O nome da pessoa não pode estar vazio.'))
             return redirect('cadastrar_pessoa')
         
         if foto:
             extensoes_validas = ['jpg', 'jpeg', 'png']
             ext = foto.name.split('.')[-1].lower()
             if ext not in extensoes_validas:
-                messages.error(request, '⚠️ O arquivo enviado não é uma imagem válida (use JPG, JPEG, PNG).')
+                messages.error(request,emojize(':warning: O arquivo enviado não é uma imagem válida (use JPG, JPEG, PNG).'))
                 return redirect('cadastrar_pessoa')
 
         pessoa = Pessoa(
@@ -80,13 +81,13 @@ def cadastrar_pessoa(request):
         )
 
         pessoa.save()
-        messages.success(request, '✅ Pessoa cadastrada com sucesso!')
+        messages.success(request,emojize(':check_mark_button: Pessoa cadastrada com sucesso!'))
         return redirect('cadastrar_pessoa')
     
 def excluir_pessoa(request, pessoa_id):
         pessoa = Pessoa.objects.get(id=pessoa_id)
         pessoa.delete()
-        messages.success(request, '✅ Pessoa excluída com sucesso!')
+        messages.success(request,emojize(':check_mark_button: Pessoa excluída com sucesso!'))
         return redirect('listar_pessoas')
 
 def listar_pessoas(request):
@@ -121,7 +122,7 @@ def excluir_anotacao_dia(request): # metódo para excluir todas as anotações d
     dia = datetime.strptime(request.GET.get('data'), '%Y-%m-%d')
     diarios = Diario.objects.filter(create_at__gte=dia).filter(create_at__lte=dia + timedelta(days=1))
     diarios.delete()
-    messages.success(request, "✅ Todas as anotações foram excluídas com sucesso!")
+    messages.success(request,emojize(':check_mark_button: Todas as anotações foram excluídas com sucesso!'))
     return redirect('escrever')
 
 def excluir_anotacao_individual(request, id): # metódo para excluir uma anotação de um dia selecionado
@@ -132,5 +133,5 @@ def excluir_anotacao_individual(request, id): # metódo para excluir uma anotaç
         next_url = reverse('escrever')
 
     anotacao.delete()
-    messages.success(request, "✅ Anotação excluída com sucesso!")
+    messages.success(request,emojize(':check_mark_button: Anotação excluída com sucesso!'))
     return redirect(next_url)
