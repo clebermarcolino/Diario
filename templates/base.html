@@ -9,14 +9,18 @@
  <script src="https://cdn.tailwindcss.com"></script>
  {% block 'head' %}{% endblock 'head' %}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body class="bg-gray-900 text-white min-h-screen" style="background-color: #111827;">
  <header class="bg-gray-900 {% block header_class %}{% endblock %}">
  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
  <div class="flex lg:flex-1">
- <a href="#" class="-m-1.5 p-1.5">
- <span class="sr-only">Diário</span>
- <img class="h-10 w-auto" src="" alt="">
+ <a href="{% url 'home' %}" class="-m-1.5 p-1.5 flex items-center gap-3 group">
+   <img class="h-8 w-auto fill-current text-white" src="{% static 'logo/logo.png' %}" alt="Logo Diário">
+   <span class="text-xl font-bold text-white hidden sm:block font-inter">Diário</span>
  </a>
  </div>
  <div class="flex lg:hidden">
