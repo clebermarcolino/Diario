@@ -28,9 +28,26 @@
  </button>
  </div>
  <div class="hidden lg:flex lg:gap-x-12">
- <a href="{% url 'home' %}" class="text-sm/6 font-semibold text-white">Home</a>
- <a href="{% url 'cadastrar_pessoa' %}" class="text-sm/6 font-semibold text-white">Pessoas</a>
- <a href="{% url 'escrever' %}" class="text-sm/6 font-semibold text-white">Escrever</a>
+ <a href="{% url 'home' %}" class="text-sm font-semibold px-3 py-2">Home</a>
+    <a href="{% url 'cadastrar_pessoa' %}"
+       class="text-sm font-semibold px-3 py-2
+              {% if request.resolver_match.url_name == 'cadastrar_pessoa' %}
+                  text-purple-400 border-b-2 border-purple-500
+              {% else %}
+                  text-white
+              {% endif %}">
+        Pessoas
+    </a>
+
+    <a href="{% url 'escrever' %}"
+       class="text-sm font-semibold px-3 py-2
+              {% if request.resolver_match.url_name == 'escrever' %}
+                  text-purple-400 border-b-2 border-purple-500
+              {% else %}
+                  text-white
+              {% endif %}">
+        Escrever
+    </a>
  </div>
  <div class="hidden lg:flex lg:flex-1 lg:justify-end">
     </div>
