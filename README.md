@@ -83,3 +83,8 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 
 <img width="1349" height="639" alt="image" src="https://github.com/user-attachments/assets/cf8a6607-01d6-4255-ac02-4120ba09c69d" />
 Essa é a home.
+
+#
+
+<img width="1344" height="591" alt="image" src="https://github.com/user-attachments/assets/fcf1ea43-5b71-41f5-bfd6-15176bd9f60e" />
+Essa tela é a parte onde mostras as anotações recentes e quantidade de anotações de cada pessoa.
