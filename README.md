@@ -21,13 +21,13 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 - **Visualização de Anotações:** As anotações são exibidas na página inicial com resumo e tags.
 
 ### Interface de Usuário
-- **Design Responsivo:** A interface é adaptável a diferentes tamanhos de tela, proporcionando uma boa experiência em dispositivos móveis e desktops.
+- **Noções de Design UI/UX:** Interface com arredondamento das bordas de botões interativos. Além de emojis, barra de navegação e logo.
 - **Alertas e Notificações:** Exibe mensagens de sucesso e erro para as operações de cadastro, edição e exclusão.
 
 ## Tecnologias Utilizadas
 
 ### Frontend
-- **HTML5:** Para a estrutura da página.
+- **HTMl:** Para a estrutura da página.
 - **Tailwind CSS:** Para estilos e layout responsivo.
 - **JavaScript:** Para interação e funcionalidades adicionais.
 - **Chart.js:** Para exibição de gráficos de dados.
