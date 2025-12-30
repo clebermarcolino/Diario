@@ -38,6 +38,7 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
 - **Pyllow:** Biblioteca de processamento de imagens para a linguagem de programação Python.
 - **Django Templates:** Para renderização dinâmica de páginas HTML.
 - **SQLite:** Banco de dados para armazenar informações.
+- **Emoji:** Biblioteca de emojis em python.
 
 ## Como Executar o Projeto
 
