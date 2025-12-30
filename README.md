@@ -76,3 +76,10 @@ Este é um projeto fullstack para um diário pessoal, que permite aos usuários 
     ```
 6.  **Acesse o sistema no seu navegador:**
     Abra seu navegador e vá para `http://127.0.0.1:8000/diario/`.
+
+#
+
+## Algumas telas do Projeto
+
+<img width="1349" height="639" alt="image" src="https://github.com/user-attachments/assets/cf8a6607-01d6-4255-ac02-4120ba09c69d" />
+Essa é a home.
