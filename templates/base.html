@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>{% block title %}Diário{% endblock%}</title>
- {% load static %}
-<link rel="shortcut icon" href="{% static 'favicon/caderno.ico' %}" type="image/x-icon">
- <script src="https://cdn.tailwindcss.com"></script>
- {% block 'head' %}{% endblock 'head' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Diário{% endblock%}</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'favicon/caderno.ico' %}" type="image/x-icon">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    {% block head %}{% endblock%}
 </head>
-<body class="bg-gray-900 text-white min-h-screen" style="background-color: #111827;">
- <header class="bg-gray-900 {% block header_class %}{% endblock %}">
- <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
- <div class="flex lg:flex-1">
- <a href="{% url 'home' %}" class="-m-1.5 p-1.5 flex items-center gap-3 group">
-   <img class="h-8 w-auto fill-current text-white" src="{% static 'logo/logo.png' %}" alt="Logo Diário">
-   <span class="text-xl font-bold text-white hidden sm:block font-inter">Diário</span>
- </a>
- </div>
- <div class="flex lg:hidden">
- <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
- <span class="sr-only">Open main menu</span>
- <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
- <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
- </svg>
- </button>
- </div>
- <div class="hidden lg:flex lg:gap-x-12">
- <a href="{% url 'home' %}" class="text-sm font-semibold px-3 py-2">Home</a>
-    <a href="{% url 'cadastrar_pessoa' %}"
-       class="text-sm font-semibold px-3 py-2
-              {% if request.resolver_match.url_name == 'cadastrar_pessoa' %}
-                  text-purple-400 border-b-2 border-purple-500
-              {% else %}
-                  text-white
-              {% endif %}">
-        Pessoas
-    </a>
+    <body class="bg-gray-900 text-white min-h-screen" style="background-color: #111827;">
+        <header class="bg-gray-900 {% block header_class %}{% endblock %}">
+            <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 
-    <a href="{% url 'escrever' %}"
-       class="text-sm font-semibold px-3 py-2
-              {% if request.resolver_match.url_name == 'escrever' %}
-                  text-purple-400 border-b-2 border-purple-500
-              {% else %}
-                  text-white
-              {% endif %}">
-        Escrever
-    </a>
- </div>
- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-    </div>
- </nav>
+                <div class="flex lg:flex-1">
+                    <a href="{% url 'home' %}" class="-m-1.5 p-1.5 flex items-center gap-3 group">
+                        <img class="h-8 w-auto fill-current text-white" src="{% static 'logo/logo.png' %}" alt="Logo Diário">
+                        <span class="text-xl font-bold text-white hidden sm:block font-inter">Diário</span>
+                    </a>
+                </div>
 
- </header>
-{% block 'body' %}{% endblock 'body' %}
+            <div class="flex lg:hidden">
+                <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{% block scripts %}{% endblock %}
+            <ul class="hidden lg:flex lg:gap-x-12">
+                <li>
+                    <a href="{% url 'home' %}" class="text-sm font-semibold px-3 py-2 text-white">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'cadastrar_pessoa' %}" 
+                       class="text-sm font-semibold px-3 py-2 {% if request.resolver_match.url_name == 'cadastrar_pessoa' %}text-purple-400 border-b-2 border-purple-500{% else %}text-white{% endif %}">
+                        Pessoas
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'escrever' %}" 
+                       class="text-sm font-semibold px-3 py-2 {% if request.resolver_match.url_name == 'escrever' %}text-purple-400 border-b-2 border-purple-500{% else %}text-white{% endif %}">
+                        Escrever
+                    </a>
+                </li>
+            </ul>
+
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block 'body' %}{% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% block scripts %}{% endblock %}
 
 </body>
 </html>
