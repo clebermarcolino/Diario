@@ -68,6 +68,10 @@ def cadastrar_pessoa(request):
             messages.error(request,emojize(':warning: O nome da pessoa não pode estar vazio.'))
             return redirect('cadastrar_pessoa')
         
+        if nome.strip().isdigit():
+            messages.error(request, emojize(':warning: Nome inválido!'))
+            return redirect('cadastrar_pessoa')
+        
         if foto:
             extensoes_validas = ['jpg', 'jpeg', 'png']
             ext = foto.name.split('.')[-1].lower()
